@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Three.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     
@@ -31,10 +33,10 @@
             pointer-events: none;
         }
         .glass-card {
-            background: rgba(18, 18, 20, 0.65);
+            background: rgba(18, 18, 20, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
         .gold-gradient-text {
             background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #AA7C11 100%);
@@ -42,7 +44,21 @@
             -webkit-text-fill-color: transparent;
         }
         .gold-border-glow {
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* 3D Button Effects */
+        .btn-3d {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(0) translateZ(0);
+        }
+        .btn-3d:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4), 0 0 25px rgba(212, 175, 55, 0.6);
+        }
+        .btn-3d:active {
+            transform: translateY(-2px) scale(0.98);
         }
     </style>
 </head>
@@ -64,104 +80,153 @@
         </a>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-20 flex flex-col md:flex-row items-center justify-between gap-12">
-        <div class="w-full md:w-1/2 space-y-6 text-center md:text-left">
+    <!-- Top Video & Hero Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-16">
+        <div class="text-center space-y-4 max-w-3xl mx-auto mb-10">
             <div class="inline-block px-4 py-1.5 rounded-full glass-card border-amber-500/30 text-amber-400 text-xs font-semibold tracking-widest uppercase">
-                📍 Ahilyanagar • High-End Club
+                📍 Ahilyanagar • Premium Fitness Studio
             </div>
             <h1 class="font-luxury text-4xl sm:text-6xl font-bold leading-tight tracking-tight">
-                WHERE <span class="gold-gradient-text">LUXURY</span> MEETS FITNESS.
+                WHERE <span class="gold-gradient-text">LUXURY</span> MEETS PERFORMANCE
             </h1>
-            <p class="text-neutral-400 text-base sm:text-lg leading-relaxed max-w-xl">
-                Experience world-class training in a high-performance environment. Gym, CrossFit, Yoga, Zumba & Aerobics reimagined.
+            <p class="text-neutral-400 text-base sm:text-lg">
+                Experience world-class training in an elite environment.
             </p>
-            <div class="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
-                <a href="https://wa.me/918530359077?text=Hi%20Supa%20Club,%20I%20would%20like%20to%20book%20a%20free%20trial%20session." target="_blank" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold hover:opacity-90 transition-all gold-border-glow">
-                    Book Free Trial
-                </a>
-                <a href="#trainers" class="px-8 py-4 rounded-xl glass-card text-white hover:border-amber-500/50 transition-all font-medium">
-                    Meet Trainers
-                </a>
-            </div>
         </div>
 
-        <!-- Interactive 3D Card / Showcase -->
-        <div class="w-full md:w-1/2">
-            <div class="glass-card p-4 rounded-3xl gold-border-glow relative overflow-hidden group">
-                <div class="aspect-video w-full rounded-2xl overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop" alt="Gym Ambience" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-                        <div>
-                            <span class="text-xs text-amber-400 font-semibold tracking-wider">360° AMBIANCE TOUR</span>
-                            <h3 class="font-luxury text-lg font-bold">Premium Hex Lighting & Turf Zone</h3>
-                        </div>
-                    </div>
-                </div>
+        <!-- Instagram Video Reel Frame -->
+        <div class="max-w-4xl mx-auto glass-card p-3 sm:p-5 rounded-3xl gold-border-glow">
+            <div class="relative w-full overflow-hidden rounded-2xl bg-black aspect-video flex items-center justify-center">
+                <!-- Embedded Instagram Reel -->
+                <iframe class="w-full h-full rounded-xl" src="https://www.instagram.com/reel/Cpx61DNB4cv/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <a href="https://wa.me/918530359077?text=Hi%20Supa%20Club,%20I%20would%20like%20to%20book%20a%20free%20trial%20session." target="_blank" class="btn-3d px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold hover:opacity-90 transition-all">
+                    🔥 Book Free Trial Session
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Grid -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 py-16">
-        <div class="text-center mb-12">
-            <h2 class="font-luxury text-3xl font-bold gold-gradient-text">EXCLUSIVE OFFERINGS</h2>
-            <p class="text-neutral-400 text-sm mt-2">Tailored programs designed for total physical transformation</p>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="glass-card p-6 rounded-2xl text-center hover:border-amber-500/50 transition-all">
-                <div class="text-3xl mb-2">🏋️‍♂️</div>
-                <h3 class="font-luxury font-bold text-white">CrossFit</h3>
-                <p class="text-neutral-500 text-xs mt-1">High Intensity</p>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center hover:border-amber-500/50 transition-all">
-                <div class="text-3xl mb-2">🧘‍♀️</div>
-                <h3 class="font-luxury font-bold text-white">Yoga</h3>
-                <p class="text-neutral-500 text-xs mt-1">Mind & Balance</p>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center hover:border-amber-500/50 transition-all">
-                <div class="text-3xl mb-2">💃</div>
-                <h3 class="font-luxury font-bold text-white">Zumba</h3>
-                <p class="text-neutral-500 text-xs mt-1">Cardio Dance</p>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center hover:border-amber-500/50 transition-all">
-                <div class="text-3xl mb-2">🔥</div>
-                <h3 class="font-luxury font-bold text-white">Aerobics</h3>
-                <p class="text-neutral-500 text-xs mt-1">Endurance Build</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="trainers" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
-        <div class="glass-card rounded-3xl p-8 border border-amber-500/20">
-            <div class="flex flex-col md:flex-row gap-8 items-center">
-                <div class="w-full md:w-1/2 rounded-2xl overflow-hidden border border-neutral-800">
-                    <!-- Integrated Team Photo Placeholder -->
-                    <div class="bg-neutral-900 p-2">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1000&auto=format&fit=crop" alt="Supa Club Team" class="w-full h-auto rounded-xl filter contrast-105">
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 space-y-4">
-                    <span class="text-amber-400 text-xs font-semibold uppercase tracking-widest">Expert Coaching</span>
-                    <h2 class="font-luxury text-3xl font-bold">100% Guaranteed Results</h2>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
-                        Our team of certified fitness elite coaches specialize in personal transformations, weight management, and athletic strength training.
+    <!-- Community / Group Photo Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="glass-card rounded-3xl p-8 border border-amber-500/30">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <span class="text-amber-400 text-xs font-semibold uppercase tracking-widest">Built On Community</span>
+                    <h2 class="font-luxury text-3xl font-bold">JOIN THE SUPA CLUB FAMILY</h2>
+                    <p class="text-neutral-300 text-sm leading-relaxed">
+                        Fitness is better together. At Supa Club, you don't just train alone; you become part of an elite community that pushes you toward maximum transformation.
                     </p>
-                    <div class="pt-2">
-                        <a href="tel:8530359077" class="inline-flex items-center gap-2 text-amber-400 font-semibold text-sm hover:underline">
-                            📞 Call Us: +91 8530359077
-                        </a>
+                    <div class="flex items-center gap-4 pt-2">
+                        <div class="text-amber-400 font-bold text-2xl">100%</div>
+                        <div class="text-xs text-neutral-400">Guaranteed Results & Motivation</div>
                     </div>
+                </div>
+                <!-- Group Photo -->
+                <div class="rounded-2xl overflow-hidden border border-amber-500/30 gold-border-glow">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1000&auto=format&fit=crop" alt="Supa Club Group" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback & Reviews Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="text-center mb-10">
+            <h2 class="font-luxury text-3xl font-bold gold-gradient-text">MEMBER FEEDBACK</h2>
+            <p class="text-neutral-400 text-xs mt-1">Real experiences from our active members</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Best gym setup in Ahilyanagar! The hex lighting vibe and trainers make every workout insane."</p>
+                <span class="font-bold text-sm text-white">- Rahul M.</span>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"CrossFit and Zumba sessions are top-notch. High energy environment and very supportive group."</p>
+                <span class="font-bold text-sm text-white">- Priya S.</span>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Super clean, high-grade equipment, and certified trainers. Worth every rupee."</p>
+                <span class="font-bold text-sm text-white">- Amit K.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Map Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 py-8">
+        <div class="glass-card rounded-3xl overflow-hidden p-3 gold-border-glow h-[350px]">
+            <iframe class="w-full h-full rounded-2xl" src="https://maps.google.com/maps?q=Ahilyanagar&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </section>
+
+    <!-- Dedicated Contact & Social Media 3D Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="glass-card rounded-3xl p-8 border border-amber-500/40 gold-border-glow">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <h2 class="font-luxury text-3xl sm:text-4xl font-bold gold-gradient-text mb-3">GET IN TOUCH</h2>
+                <p class="text-neutral-400 text-sm">Have questions or ready to transform? Reach out to us directly or follow us on social media.</p>
+            </div>
+
+            <!-- 3D Interactive Buttons Bar -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- WhatsApp 3D Button -->
+                <a href="https://wa.me/918530359077?text=Hi%20Supa%20Club,%20I%20want%20to%20know%20more%20details!" target="_blank" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 text-white font-bold border border-emerald-400/30">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>WhatsApp Us</span>
+                </a>
+
+                <!-- Instagram 3D Button -->
+                <a href="https://instagram.com/supaclub_official" target="_blank" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 text-white font-bold border border-pink-400/30">
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                    <span>Instagram</span>
+                </a>
+
+                <!-- Phone Call 3D Button -->
+                <a href="tel:+918530359077" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold border border-amber-400/40">
+                    <i class="fa-solid fa-phone text-xl"></i>
+                    <span>Call Now</span>
+                </a>
+
+                <!-- Email 3D Button -->
+                <a href="mailto:info@supaclub.com" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-neutral-800 to-neutral-900 text-amber-400 font-bold border border-amber-500/30">
+                    <i class="fa-solid fa-envelope text-xl"></i>
+                    <span>Email Us</span>
+                </a>
+            </div>
+
+            <!-- Detailed Contact Info Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-neutral-800 text-center md:text-left">
+                <div class="space-y-2">
+                    <div class="text-amber-400 font-semibold text-sm flex items-center justify-center md:justify-start gap-2">
+                        <i class="fa-solid fa-location-dot"></i> Location
+                    </div>
+                    <p class="text-neutral-300 text-xs leading-relaxed">Supa Club Gym, Ahilyanagar, Maharashtra</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="text-amber-400 font-semibold text-sm flex items-center justify-center md:justify-start gap-2">
+                        <i class="fa-solid fa-phone"></i> Phone Support
+                    </div>
+                    <p class="text-neutral-300 text-xs">+91 8530359077 / +91 7276541188</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="text-amber-400 font-semibold text-sm flex items-center justify-center md:justify-start gap-2">
+                        <i class="fa-solid fa-clock"></i> Working Hours
+                    </div>
+                    <p class="text-neutral-300 text-xs">Mon - Sat: 5:30 AM - 10:00 PM | Sun: Closed</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-neutral-900 mt-20 py-8 text-center text-neutral-600 text-xs">
+    <footer class="relative z-10 border-t border-neutral-900 mt-12 py-8 text-center text-neutral-600 text-xs">
         <p>© 2026 Supa Club Gym. Concept Designed by Zippy Web Agency.</p>
     </footer>
 
@@ -176,7 +241,7 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // 3D Particles Mesh (Luxury Gold Floating Particles)
+        // 3D Gold Floating Particles
         const geometry = new THREE.BufferGeometry();
         const count = 700;
         const positions = new Float32Array(count * 3);
@@ -199,7 +264,6 @@
 
         camera.position.z = 5;
 
-        // Mouse Interactivity
         let mouseX = 0;
         let mouseY = 0;
 
@@ -208,14 +272,12 @@
             mouseY = (e.clientY / window.innerHeight) - 0.5;
         });
 
-        // Animation Loop
         function animate() {
             requestAnimationFrame(animate);
 
             particles.rotation.y += 0.001;
             particles.rotation.x += 0.0005;
 
-            // Parallax Effect
             camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
             camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
 
@@ -223,7 +285,6 @@
         }
         animate();
 
-        // Responsive Resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
