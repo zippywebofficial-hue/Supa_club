@@ -16,12 +16,13 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #080808; color: #ffffff; overflow-x: hidden; }
         .font-luxury { font-family: 'Cinzel', serif; }
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
         .glass-card { background: rgba(18, 18, 20, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.2); }
         .gold-gradient-text { background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #AA7C11 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .gold-border-glow { box-shadow: 0 0 25px rgba(212, 175, 55, 0.2); }
         
-        /* Video Styling for Hero */
+        /* Video Container & Background */
+        .hero-section { position: relative; width: 100%; height: 100vh; overflow: hidden; }
         .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
         .video-bg { width: 100%; height: 100%; object-fit: cover; }
         
@@ -34,7 +35,7 @@
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 left-0 px-6 py-5 flex items-center justify-between max-w-7xl mx-auto left-0 right-0">
+    <nav class="fixed w-full z-50 top-0 left-0 px-6 py-5 flex items-center justify-between max-w-7xl mx-auto right-0">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full border border-amber-500/40 p-1 flex items-center justify-center bg-black/50">
                 <span class="font-luxury font-bold text-amber-400 text-lg">SC</span>
@@ -45,18 +46,18 @@
     </nav>
 
     <!-- HERO SECTION (Full Screen Video) -->
-    <section class="relative w-full h-screen flex items-center justify-center text-center">
+    <section class="hero-section flex items-center justify-center text-center">
         <!-- Video Background -->
         <div class="video-container">
-            <!-- IMPORTANT: Upload your MP4 file and name it 'hero-bg.mp4' in your repo -->
-            <video autoplay muted loop playsinline class="video-bg">
+            <video id="heroVideo" autoplay muted loop playsinline preload="auto" class="video-bg">
+                <source src="hero-bg.mp4.mp4" type="video/mp4">
                 <source src="hero-bg.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-black/60"></div> <!-- Dark overlay -->
+            <div class="absolute inset-0 bg-black/50 z-10"></div> <!-- Dark Overlay -->
         </div>
 
         <!-- Hero Content -->
-        <div class="relative z-10 px-6">
+        <div class="relative z-20 px-6">
             <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass-card border-amber-500/30 text-amber-400 text-xs font-semibold tracking-widest uppercase">
                 📍 Ahilyanagar • Premium Fitness Studio
             </div>
@@ -70,7 +71,7 @@
     </section>
 
     <!-- Community Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+    <section class="relative z-20 max-w-7xl mx-auto px-6 py-20">
         <div class="glass-card rounded-3xl p-8 border border-amber-500/30">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="space-y-4">
@@ -86,7 +87,7 @@
     </section>
 
     <!-- Reviews -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+    <section class="relative z-20 max-w-7xl mx-auto px-6 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="glass-card p-6 rounded-2xl">
                 <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Best gym setup in Ahilyanagar! The hex lighting vibe is insane."</p>
@@ -104,14 +105,14 @@
     </section>
 
     <!-- Map -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 py-8">
+    <section class="relative z-20 max-w-7xl mx-auto px-6 py-8">
         <div class="glass-card rounded-3xl overflow-hidden p-3 gold-border-glow h-[300px]">
             <iframe class="w-full h-full rounded-2xl" src="https://maps.google.com/maps?q=Ahilyanagar&output=embed" frameborder="0"></iframe>
         </div>
     </section>
 
     <!-- Contact & Social Media Section -->
-    <section id="contact" class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+    <section id="contact" class="relative z-20 max-w-7xl mx-auto px-6 py-12">
         <div class="glass-card rounded-3xl p-8 border border-amber-500/40 gold-border-glow">
             <div class="text-center mb-10">
                 <h2 class="font-luxury text-3xl font-bold gold-gradient-text mb-3">GET IN TOUCH</h2>
@@ -133,12 +134,23 @@
         </div>
     </section>
 
-    <footer class="relative z-10 text-center py-8 text-neutral-600 text-xs">
+    <footer class="relative z-20 text-center py-8 text-neutral-600 text-xs">
         <p>© 2026 Supa Club Gym. Concept Designed by Zippy Web Agency.</p>
     </footer>
 
+    <!-- Force Play Video Script & ThreeJS Particles -->
     <script>
-        // Three.js background particles
+        // Force video playback on Mobile devices
+        document.addEventListener("DOMContentLoaded", function() {
+            var video = document.getElementById("heroVideo");
+            if(video) {
+                video.play().catch(function(error) {
+                    console.log("Autoplay failed:", error);
+                });
+            }
+        });
+
+        // Three.js Background Particles
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -146,7 +158,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
         const geometry = new THREE.BufferGeometry();
-        const count = 500;
+        const count = 400;
         const positions = new Float32Array(count * 3);
         for (let i = 0; i < count * 3; i++) { positions[i] = (Math.random() - 0.5) * 10; }
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
