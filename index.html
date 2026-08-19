@@ -14,282 +14,148 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #080808;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        .font-luxury {
-            font-family: 'Cinzel', serif;
-        }
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .glass-card {
-            background: rgba(18, 18, 20, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #AA7C11 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gold-border-glow {
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #080808; color: #ffffff; overflow-x: hidden; }
+        .font-luxury { font-family: 'Cinzel', serif; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+        .glass-card { background: rgba(18, 18, 20, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .gold-gradient-text { background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #AA7C11 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-border-glow { box-shadow: 0 0 25px rgba(212, 175, 55, 0.2); }
         
-        /* 3D Button Effects */
-        .btn-3d {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
-            transform: translateY(0) translateZ(0);
-        }
-        .btn-3d:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4), 0 0 25px rgba(212, 175, 55, 0.6);
-        }
-        .btn-3d:active {
-            transform: translateY(-2px) scale(0.98);
-        }
+        /* Video Styling for Hero */
+        .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .video-bg { width: 100%; height: 100%; object-fit: cover; }
+        
+        .btn-3d { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2); }
+        .btn-3d:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4); }
     </style>
 </head>
 <body class="relative min-h-screen">
 
-    <!-- 3D Canvas Background -->
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <nav class="relative z-10 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto border-b border-neutral-800/50">
+    <nav class="fixed w-full z-50 top-0 left-0 px-6 py-5 flex items-center justify-between max-w-7xl mx-auto left-0 right-0">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full border border-amber-500/40 p-1 flex items-center justify-center bg-black/50">
                 <span class="font-luxury font-bold text-amber-400 text-lg">SC</span>
             </div>
             <span class="font-luxury font-bold text-xl tracking-wider text-white">SUPA CLUB</span>
         </div>
-        <a href="https://wa.me/918530359077?text=Hi%20Supa%20Club,%20I%20want%20to%20inquire%20about%20membership" target="_blank" class="px-5 py-2 rounded-full border border-amber-500/50 text-amber-400 text-sm hover:bg-amber-500 hover:text-black transition-all duration-300 font-medium">
-            Join Club
-        </a>
+        <a href="#contact" class="px-5 py-2 rounded-full border border-amber-500/50 text-amber-400 text-sm hover:bg-amber-500 hover:text-black transition-all font-medium">Join Club</a>
     </nav>
 
-    <!-- Top Video & Hero Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-16">
-        <div class="text-center space-y-4 max-w-3xl mx-auto mb-10">
-            <div class="inline-block px-4 py-1.5 rounded-full glass-card border-amber-500/30 text-amber-400 text-xs font-semibold tracking-widest uppercase">
-                📍 Ahilyanagar • Premium Fitness Studio
-            </div>
-            <h1 class="font-luxury text-4xl sm:text-6xl font-bold leading-tight tracking-tight">
-                WHERE <span class="gold-gradient-text">LUXURY</span> MEETS PERFORMANCE
-            </h1>
-            <p class="text-neutral-400 text-base sm:text-lg">
-                Experience world-class training in an elite environment.
-            </p>
+    <!-- HERO SECTION (Full Screen Video) -->
+    <section class="relative w-full h-screen flex items-center justify-center text-center">
+        <!-- Video Background -->
+        <div class="video-container">
+            <!-- IMPORTANT: Upload your MP4 file and name it 'hero-bg.mp4' in your repo -->
+            <video autoplay muted loop playsinline class="video-bg">
+                <source src="hero-bg.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-black/60"></div> <!-- Dark overlay -->
         </div>
 
-        <!-- Instagram Video Reel Frame -->
-        <div class="max-w-4xl mx-auto glass-card p-3 sm:p-5 rounded-3xl gold-border-glow">
-            <div class="relative w-full overflow-hidden rounded-2xl bg-black aspect-video flex items-center justify-center">
-                <!-- Embedded Instagram Reel -->
-                <iframe class="w-full h-full rounded-xl" src="https://www.instagram.com/reel/Cpx61DNB4cv/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+        <!-- Hero Content -->
+        <div class="relative z-10 px-6">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass-card border-amber-500/30 text-amber-400 text-xs font-semibold tracking-widest uppercase">
+                📍 Ahilyanagar • Premium Fitness Studio
             </div>
-            <div class="flex flex-wrap justify-center gap-4 mt-6">
-                <a href="https://wa.me/918530359077?text=Hi%20Supa%20Club,%20I%20would%20like%20to%20book%20a%20free%20trial%20session." target="_blank" class="btn-3d px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold hover:opacity-90 transition-all">
-                    🔥 Book Free Trial Session
-                </a>
-            </div>
+            <h1 class="font-luxury text-5xl sm:text-7xl font-bold leading-tight tracking-tight mb-6">
+                WHERE <span class="gold-gradient-text">LUXURY</span> MEETS PERFORMANCE
+            </h1>
+            <a href="#contact" class="btn-3d inline-block px-10 py-4 rounded-full bg-amber-500 text-black font-bold text-lg hover:opacity-90">
+                Book Free Trial
+            </a>
         </div>
     </section>
 
-    <!-- Community / Group Photo Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+    <!-- Community Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 py-20">
         <div class="glass-card rounded-3xl p-8 border border-amber-500/30">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="space-y-4">
                     <span class="text-amber-400 text-xs font-semibold uppercase tracking-widest">Built On Community</span>
                     <h2 class="font-luxury text-3xl font-bold">JOIN THE SUPA CLUB FAMILY</h2>
-                    <p class="text-neutral-300 text-sm leading-relaxed">
-                        Fitness is better together. At Supa Club, you don't just train alone; you become part of an elite community that pushes you toward maximum transformation.
-                    </p>
-                    <div class="flex items-center gap-4 pt-2">
-                        <div class="text-amber-400 font-bold text-2xl">100%</div>
-                        <div class="text-xs text-neutral-400">Guaranteed Results & Motivation</div>
-                    </div>
+                    <p class="text-neutral-300 text-sm leading-relaxed">Fitness is better together. Become part of an elite community that pushes you toward maximum transformation.</p>
                 </div>
-                <!-- Group Photo -->
                 <div class="rounded-2xl overflow-hidden border border-amber-500/30 gold-border-glow">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1000&auto=format&fit=crop" alt="Supa Club Group" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1000&auto=format&fit=crop" alt="Gym" class="w-full h-auto object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Feedback & Reviews Section -->
+    <!-- Reviews -->
     <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
-        <div class="text-center mb-10">
-            <h2 class="font-luxury text-3xl font-bold gold-gradient-text">MEMBER FEEDBACK</h2>
-            <p class="text-neutral-400 text-xs mt-1">Real experiences from our active members</p>
-        </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="glass-card p-6 rounded-2xl">
-                <div class="text-amber-400 text-sm mb-2">★★★★★</div>
-                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Best gym setup in Ahilyanagar! The hex lighting vibe and trainers make every workout insane."</p>
+                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Best gym setup in Ahilyanagar! The hex lighting vibe is insane."</p>
                 <span class="font-bold text-sm text-white">- Rahul M.</span>
             </div>
             <div class="glass-card p-6 rounded-2xl">
-                <div class="text-amber-400 text-sm mb-2">★★★★★</div>
-                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"CrossFit and Zumba sessions are top-notch. High energy environment and very supportive group."</p>
+                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"CrossFit and Zumba sessions are top-notch. High energy environment."</p>
                 <span class="font-bold text-sm text-white">- Priya S.</span>
             </div>
             <div class="glass-card p-6 rounded-2xl">
-                <div class="text-amber-400 text-sm mb-2">★★★★★</div>
-                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Super clean, high-grade equipment, and certified trainers. Worth every rupee."</p>
+                <p class="text-neutral-300 text-xs leading-relaxed mb-4">"Super clean, high-grade equipment, and certified trainers."</p>
                 <span class="font-bold text-sm text-white">- Amit K.</span>
             </div>
         </div>
     </section>
 
-    <!-- Google Map Section -->
+    <!-- Map -->
     <section class="relative z-10 max-w-7xl mx-auto px-6 py-8">
-        <div class="glass-card rounded-3xl overflow-hidden p-3 gold-border-glow h-[350px]">
-            <iframe class="w-full h-full rounded-2xl" src="https://maps.google.com/maps?q=Ahilyanagar&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no"></iframe>
+        <div class="glass-card rounded-3xl overflow-hidden p-3 gold-border-glow h-[300px]">
+            <iframe class="w-full h-full rounded-2xl" src="https://maps.google.com/maps?q=Ahilyanagar&output=embed" frameborder="0"></iframe>
         </div>
     </section>
 
-    <!-- Dedicated Contact & Social Media 3D Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+    <!-- Contact & Social Media Section -->
+    <section id="contact" class="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div class="glass-card rounded-3xl p-8 border border-amber-500/40 gold-border-glow">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="font-luxury text-3xl sm:text-4xl font-bold gold-gradient-text mb-3">GET IN TOUCH</h2>
-                <p class="text-neutral-400 text-sm">Have questions or ready to transform? Reach out to us directly or follow us on social media.</p>
+            <div class="text-center mb-10">
+                <h2 class="font-luxury text-3xl font-bold gold-gradient-text mb-3">GET IN TOUCH</h2>
             </div>
-
-            <!-- 3D Interactive Buttons Bar -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <!-- WhatsApp 3D Button -->
-                <a href="https://wa.me/918530359077?text=Hi%20Supa%20Club,%20I%20want%20to%20know%20more%20details!" target="_blank" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 text-white font-bold border border-emerald-400/30">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>
-                    <span>WhatsApp Us</span>
+                <a href="https://wa.me/918530359077" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 text-white font-bold">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> WhatsApp
                 </a>
-
-                <!-- Instagram 3D Button -->
-                <a href="https://instagram.com/supaclub_official" target="_blank" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 text-white font-bold border border-pink-400/30">
-                    <i class="fa-brands fa-instagram text-2xl"></i>
-                    <span>Instagram</span>
+                <a href="https://instagram.com/supaclub_official" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold">
+                    <i class="fa-brands fa-instagram text-2xl"></i> Instagram
                 </a>
-
-                <!-- Phone Call 3D Button -->
-                <a href="tel:+918530359077" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold border border-amber-400/40">
-                    <i class="fa-solid fa-phone text-xl"></i>
-                    <span>Call Now</span>
+                <a href="tel:+918530359077" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold">
+                    <i class="fa-solid fa-phone text-xl"></i> Call Now
                 </a>
-
-                <!-- Email 3D Button -->
-                <a href="mailto:info@supaclub.com" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-neutral-800 to-neutral-900 text-amber-400 font-bold border border-amber-500/30">
-                    <i class="fa-solid fa-envelope text-xl"></i>
-                    <span>Email Us</span>
+                <a href="mailto:info@supaclub.com" class="btn-3d flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-neutral-800 to-neutral-900 text-amber-400 font-bold">
+                    <i class="fa-solid fa-envelope text-xl"></i> Email Us
                 </a>
-            </div>
-
-            <!-- Detailed Contact Info Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-neutral-800 text-center md:text-left">
-                <div class="space-y-2">
-                    <div class="text-amber-400 font-semibold text-sm flex items-center justify-center md:justify-start gap-2">
-                        <i class="fa-solid fa-location-dot"></i> Location
-                    </div>
-                    <p class="text-neutral-300 text-xs leading-relaxed">Supa Club Gym, Ahilyanagar, Maharashtra</p>
-                </div>
-
-                <div class="space-y-2">
-                    <div class="text-amber-400 font-semibold text-sm flex items-center justify-center md:justify-start gap-2">
-                        <i class="fa-solid fa-phone"></i> Phone Support
-                    </div>
-                    <p class="text-neutral-300 text-xs">+91 8530359077 / +91 7276541188</p>
-                </div>
-
-                <div class="space-y-2">
-                    <div class="text-amber-400 font-semibold text-sm flex items-center justify-center md:justify-start gap-2">
-                        <i class="fa-solid fa-clock"></i> Working Hours
-                    </div>
-                    <p class="text-neutral-300 text-xs">Mon - Sat: 5:30 AM - 10:00 PM | Sun: Closed</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="relative z-10 border-t border-neutral-900 mt-12 py-8 text-center text-neutral-600 text-xs">
+    <footer class="relative z-10 text-center py-8 text-neutral-600 text-xs">
         <p>© 2026 Supa Club Gym. Concept Designed by Zippy Web Agency.</p>
     </footer>
 
-    <!-- Three.js Interactive 3D Script -->
     <script>
+        // Three.js background particles
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
-
-        // 3D Gold Floating Particles
         const geometry = new THREE.BufferGeometry();
-        const count = 700;
+        const count = 500;
         const positions = new Float32Array(count * 3);
-
-        for (let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 15;
-        }
-
+        for (let i = 0; i < count * 3; i++) { positions[i] = (Math.random() - 0.5) * 10; }
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const material = new THREE.PointsMaterial({
-            size: 0.035,
-            color: 0xD4AF37,
-            transparent: true,
-            opacity: 0.6
-        });
-
+        const material = new THREE.PointsMaterial({ size: 0.02, color: 0xD4AF37, transparent: true, opacity: 0.5 });
         const particles = new THREE.Points(geometry, material);
         scene.add(particles);
-
         camera.position.z = 5;
-
-        let mouseX = 0;
-        let mouseY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) - 0.5;
-            mouseY = (e.clientY / window.innerHeight) - 0.5;
-        });
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            particles.rotation.y += 0.001;
-            particles.rotation.x += 0.0005;
-
-            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
-
-            renderer.render(scene, camera);
-        }
+        function animate() { requestAnimationFrame(animate); particles.rotation.y += 0.001; renderer.render(scene, camera); }
         animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
     </script>
 </body>
 </html>
